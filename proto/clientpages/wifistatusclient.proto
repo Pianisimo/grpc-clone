@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/clientpages";
+// -Wifi Status-
+message StatusHealthClientResponse{
+  repeated StatusInfo status_health=1;
+}
+message StatusInfo{
+  string band=1;
+  bool wifi_enable_btn=2;   // true if frecuency is enabled
+  int32 wifi_health=3;    //status health value
+}
+message SetFrequencyRequest {
+  string band = 1;       // frecuency that will be enable/disable
+  bool enable = 2;     
+}
+message SetFrequencyResponse {
+  bool success = 1;
+  StatusInfo updated_status = 2;  //updated frecuency enable
+}
+message OptimizeClientRequest {
+  string band = 1;        // 2.4 or 5 band
+}
+message OptimizeClientResponse {
+  bool success = 1; 
+  StatusInfo updated_status = 2;    // result after optimization 
+}

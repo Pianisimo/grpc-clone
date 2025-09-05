@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/";
+
+import "shared/shared.proto";
+
+//RouterDetailsPage
+message RouterDetailResponse{
+  Router router_info=1;  
+  repeated DeviceHome device_info=2;     //check if device id is needed
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/techpages";
+
+import "shared/shared.proto";
+import "interference.proto";
+
+// -Overview-
+message OverviewPageResponse{
+  Router router_info=1;
+  Speed speed_test=2;
+  InterferenceData interference_info=3;
+}

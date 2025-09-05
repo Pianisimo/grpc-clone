@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/clientpages";
+import "shared/shared.proto";
+
+// -Wifi Tools-
+message WifiGeneralResponse{
+  RouterStatic router_info=1;
+}
+
+message GuestAccessResponse{
+  bool enable_guest=1;    // true if guest is enable
+  string ssid_guest=2;
+  string password_guest=3;
+}
+message EnableGuestRequest{
+  bool enabled=1;    // If true guest access is enabled
+}
+message UpdateGuestRequest{
+  string ssid_guest=1;
+  string password_guest=2;
+}
+message UpdateGuestResponse{
+  bool success=1;
+  string message=2;
+  GuestAccessResponse updated=3;
+}
+
+message RebootResponse{
+  bool success=1;
+  string message=2;
+}

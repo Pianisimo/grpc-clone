@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/clientpages";
+
+import "shared/shared.proto";
+
+// -Dashboard-
+message DashboardPageResponse{
+  int32 latency=1;
+  int32 packet_loss=2;
+  int32 jitter=3;
+  Usage dashboard_usage=4;
+  Speed speed_test=5;
+}

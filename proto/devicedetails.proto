@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/";
+
+import "shared/shared.proto";
+
+//DeviceDetail
+message DeviceDetailResponse{
+  Device device_info=1;
+}

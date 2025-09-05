@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/";
+
+import "shared/shared.proto";
+
+//Topology page 
+message TopologyDataResponse{
+  Speed network_speed=1;
+  repeated Router list_routers=2;
+}

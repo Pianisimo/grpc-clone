@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/";
+
+import "shared/shared.proto";
+
+// -Homepage-
+message HomepageDataResponse{
+  MeshTopology mesh_topology =1;
+}
+message MeshTopology{
+  repeated Router main_extenders=1; //Calls both dynamic and static information 
+}
+message HomepageDynamicUpdateResponse {
+  repeated RouterDynamic main_extender_dynamic = 1;   //Only for dynamic data when refresh
+}

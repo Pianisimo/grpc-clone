@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/techpages";
+
+import "shared/shared.proto";
+
+// -Installation-
+message InstallationDetailsResponse{
+  RouterStatic router_static=1;
+}

@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/";
+
+import "shared/shared.proto";
+import "homepage.proto";
+import "topologypage.proto";
+import "routerdetails.proto";
+import "devicedetails.proto";
+import "connectdevices.proto";
+import "interference.proto";
+import "clientpages/wifisetting.proto";
+import "clientpages/dashboard.proto";
+import "clientpages/wifistatusclient.proto";
+import "clientpages/wifitools.proto";
+import "clientpages/usagepage.proto";
+import "clientpages/speedpageclient.proto";
+import "clientpages/trafficpage.proto";
+import "techpages/overview.proto";
+import "techpages/installation.proto";
+import "techpages/speedtechpage.proto";
+import "techpages/wifistatustech.proto";
+
+//SERVICES
+service SelfCareService {
+  // Homepage
+  rpc GetHomepageData (EmptyRequest) returns (HomepageDataResponse);
+  rpc GetHomepageDynamic (EmptyRequest) returns (HomepageDynamicUpdateResponse);    //For every refresh
+
+  // Topology
+  rpc GetTopologyData (EmptyRequest) returns (TopologyDataResponse);
+
+  // Router & Device
+  rpc GetRouterDetail (RouterStatic) returns (RouterDetailResponse);   //Calling RouterStatic to get the id of the router
+  rpc GetDeviceDetail (DeviceStatic) returns (DeviceDetailResponse);  //Calling DeviceStatic to get the id of the device
+
+  // Connected Devices
+  rpc GetConnectedDevices (EmptyRequest) returns (ConnectedDevicesResponse);
+
+  // Wifi Settings
+  rpc GetWifiSettings (EmptyRequest) returns (WifiSettingsResponse);
+  rpc UpdateWifiSettings (UpdateWifiSettingsRequest) returns (UpdateWifiSettingsResponse);
+
+  // Dashboard
+  rpc GetDashboardPage (EmptyRequest) returns (DashboardPageResponse);
+
+  // Wifi Status
+  rpc GetStatusHealthClient (EmptyRequest) returns (StatusHealthClientResponse);            //to show the information
+  rpc SetFrequency (SetFrequencyRequest) returns (SetFrequencyResponse);   //determine if frecuency is enable/disable
+  rpc OptimizeClient (OptimizeClientRequest) returns (OptimizeClientResponse);    //optimize channels
+  rpc GetInterference (EmptyRequest) returns (InterferenceResponse);                             // neighbor interferences
+
+  // Wifi Tools
+  rpc GetWifiGeneral (EmptyRequest) returns (WifiGeneralResponse);
+  ///
+  rpc GetGuestAccess (EmptyRequest) returns (GuestAccessResponse);         // to see if it is enabled
+  rpc GetEnableGuest(EnableGuestRequest) returns (UpdateGuestResponse);   //enable guestaccess to define password 
+  rpc GetUpdateGuest (UpdateGuestRequest) returns (UpdateGuestResponse);    //edit password or Network ssid 
+  ///
+  rpc GetReboot (EmptyRequest) returns (RebootResponse);
+
+  // Usage 
+  rpc GetUsagePage (EmptyRequest) returns (UsagePageResponse);    //calling 4 tables in the page
+  // Speed
+  rpc GetSpeedPage (EmptyRequest) returns (SpeedPageResponse);
+  rpc GetSpeedTableHistory (SpeedTableHistoryRequest) returns (SpeedTableHistoryResponse);   //shows the 7dyas o 30days table
+  // Traffic
+  rpc GetTrafficSignal (EmptyRequest) returns (TrafficSignalResponse);
+  rpc GetTrafficTable (TrafficTableRequest) returns (TrafficTableResponse);
+  
+  //TECH APP PAGES
+  //Overview TechPage
+  rpc GetOverviewPage (EmptyRequest) returns (OverviewPageResponse);
+
+  //Speed Test TechPage
+  rpc GetSpeedTestPage (EmptyRequest) returns (SpeedTestPageResponse);
+  rpc GetRunSpeedTest (EmptyRequest) returns (SpeedTestResponse);
+
+  //Installation
+  rpc GetInstallationDetails (EmptyRequest) returns (InstallationDetailsResponse);
+
+  //Status Techapp 
+  rpc GetStatusHealthTech (EmptyRequest) returns (StatusHealthTechResponse);
+  rpc GetChannels (ChannelsRequest) returns (ChannelsResponse);
+  rpc OptimizeChannels (OptimizeChannelRequest) returns (OptimizeChannelResponse);
+}
+
+

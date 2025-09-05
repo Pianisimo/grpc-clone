@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/techpages";
+// -Wifi Status-
+message StatusHealthTechResponse{
+  repeated StatusTechData signal_status=1;
+}
+message StatusTechData {
+  int32 current_channel=1;
+  int32 health_value=2;
+}
+message ChannelsRequest{
+  bool view_channels=1;
+}
+message ChannelsResponse{
+  int32 current_channel=1;
+  repeated ChannelTable table_ofchannels=2;
+}
+message ChannelTable{
+  int32 number_channel=1;
+  int32 value_channel=2;
+}
+message OptimizeChannelRequest{
+  bool opmitize_btn=1;
+  string band = 2;  //2.4GHz or 5GHZ
+}
+message OptimizeChannelResponse{
+  ChannelsResponse new_channel=1; //updated channels 
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/clientpages";
+// -WIFI Settings-
+message WifiSettingsResponse{
+  string ssid_wifi=1;
+  string password=2;
+}
+message UpdateWifiSettingsRequest {
+  optional string ssid_wifi = 1;  //optional if ssid not edited
+  optional string password = 2;   //optional if password not edited
+}
+message UpdateWifiSettingsResponse {
+  bool success = 1;
+  string message = 2;
+  WifiSettingsResponse updated = 3;   //Updated values for wifi settings
+}

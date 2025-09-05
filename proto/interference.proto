@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/";
+
+//Interference
+message InterferenceResponse{
+  repeated InterferenceData interference_info= 1;  
+}
+message InterferenceData{
+  string neighbor_ssid=1;
+  string neighbor_channel=2;
+  string neighbor_signal=3;
+}

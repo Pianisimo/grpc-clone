@@ -1,0 +1,68 @@
+syntax= "proto3";
+
+package selfcare;
+option go_package="pkg/gen/shared";
+
+// -General Data-
+message RouterStatic {
+  string id = 1;        //to identify router
+  string ssid = 2;
+  string mac_address = 3;
+  string ip_address = 4;
+  string manufacturer = 5;
+  string security_type = 6;
+  string serial_number=7;
+  string model=8;
+  bool is_main = 9;    //true if Main router - false if extender
+}
+message RouterDynamic {
+  int32 connected_devices = 1;  //see if possible(extender or router)
+  int32 rssi = 2;
+  repeated int32 router_channel=3; //TechAppData (2.4/5GHz)
+  bool supported_connected_devices=4;  //true if has extender with different ip
+}
+message Router {
+  RouterStatic static_info = 1;         //to show both information
+  RouterDynamic dynamic_info = 2;
+}
+message DeviceStatic {
+  string id = 1;       // to identify device
+  string ssid = 2;
+  string ip_address = 3;
+  string mac_address = 4; 
+  string address_source = 5;
+  string interface = 6;
+  TypeDevice type_device =7;  //TechAppData (Phone, laptop, TV)
+}
+enum TypeDevice{
+  phone =0;
+  tablet=1;
+  smart_tv=2;
+  laptop=3;
+}
+message DeviceDynamic {
+  string router_id = 1;    //ID of the router that the device is connected to 
+  int32 rssi = 2;
+  string upload_speed = 3;    
+  string download_speed = 4; 
+  string connection_type=5;    //(LAN or WLAN)
+}
+message Device {
+  DeviceStatic static_info = 1;
+  DeviceDynamic dynamic_info = 2;
+}
+message DeviceHome{
+  string router_id=1;     //only to show this specific information of device
+  int32 rssi=2;
+  string ssid=3;
+}
+message Speed{
+  string download=1;   //From router
+  string upload=2;    //From router
+}
+message Usage{
+  int32 cpu_health=1;
+  int32 memory_health=2;
+}
+
+message EmptyRequest {}

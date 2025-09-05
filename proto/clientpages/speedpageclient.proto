@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/clientpages";
+import "shared/shared.proto";
+import "google/protobuf/timestamp.proto";
+
+
+//Speed Page
+message SpeedPageResponse{
+  Speed speed_values=1;
+  SpeedTable last_7days=2;
+}
+message SpeedData{
+  google.protobuf.Timestamp dates=1;     //see if timestamp is good
+  string download=2;
+  string upload=3;
+}
+message SpeedTable{
+  repeated SpeedData data_table=1;
+}
+message SpeedTableHistoryRequest {
+  string days = 1;      // "7days" or "30days"
+}
+message SpeedTableHistoryResponse {
+  SpeedTable table = 1;
+}

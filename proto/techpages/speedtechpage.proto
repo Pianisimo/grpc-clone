@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/techpages";
+
+import "google/protobuf/timestamp.proto";
+
+// -SpeedTest-
+message SpeedTestPageResponse{
+  repeated TechSpeedTest speedtest_data=1;
+}
+enum TypeofSpeed{
+  tcp =0;
+  udp =1;
+  download=2;
+  upload=3;
+}
+message TechSpeedTest{
+  TypeofSpeed type_of_data=1;
+  int32 speed_values=2;  //Mbps
+  google.protobuf.Timestamp speed_date=3;  // check if timestamp is needed
+}
+message SpeedTestResponse{
+  repeated TechSpeedTest results = 1;
+}

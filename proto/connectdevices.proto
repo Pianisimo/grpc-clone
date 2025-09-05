@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package selfcare;
+option go_package="pkg/gen/";
+
+import "shared/shared.proto";
+
+// -Connected Devices-  (+TechAppData - PDF button RCP)
+message ConnectedDevicesResponse{
+  repeated Device device_info=1;
+}
